@@ -1,4 +1,5 @@
-public class ErrorResponse extends Response implements IResponse {
+public class ErrorResponse extends Response
+{
     
     ErrorResponse(int statusCode, String error) {
         super(statusCode);

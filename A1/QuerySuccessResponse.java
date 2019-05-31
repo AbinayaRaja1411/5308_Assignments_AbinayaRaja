@@ -1,5 +1,5 @@
 
-public class QuerySuccessResponse extends Response implements IResponse
+public class QuerySuccessResponse extends Response
 {
 	QuerySuccessResponse(int statusCode, int quantityInStock) {
 		super(statusCode);

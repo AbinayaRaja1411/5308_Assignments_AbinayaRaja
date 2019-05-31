@@ -26,12 +26,33 @@ public class ShipMate implements IShipMate {
                 && address.city != null && !address.city.trim().isEmpty()
                 && address.province != null && !address.province.trim().isEmpty()
                 && address.country != null && !address.country.trim().isEmpty()
-                && address.postalCode != null && !address.postalCode.trim().isEmpty();
-                // && knownAddresses.contains(address);
+                && address.postalCode != null && !address.postalCode.trim().isEmpty()
+                && isAddressMatchFound(address);
         return isKnown;
     }
+	
 	public String shipToAddress(Address address, int count, String drugName) throws Exception {
-        String estimatedDeliveryDate = "01-Jun-2019";
-        return estimatedDeliveryDate;
+        return "06-10-2019";
+    }
+
+    private boolean isAddressMatchFound(Address addr) {
+        boolean isMatchFound = false;
+        if(knownAddresses != null && knownAddresses.size() > 0) {
+            int addressListSize = knownAddresses.size();
+            for(int i = 0; i < addressListSize; i++) {
+                Address addressAtCurrentIndex = knownAddresses.get(i);
+                if(addressAtCurrentIndex.customer.equals(addr.customer) 
+                    && addressAtCurrentIndex.street.equals(addr.street)
+                    && addressAtCurrentIndex.city.equals(addr.city)
+                    && addressAtCurrentIndex.province.equals(addr.province)
+                    && addressAtCurrentIndex.country.equals(addr.country)
+                    && addressAtCurrentIndex.postalCode.equals(addr.postalCode))
+                    {
+                        isMatchFound = true;
+                        break;
+                    }
+            }
+        }
+        return isMatchFound;
     }
 }

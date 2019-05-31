@@ -9,6 +9,7 @@ public class Database implements IDatabase {
         knownDrugs = new HashMap<>();
         knownDrugs.put("amoxicillin", 120);
         knownDrugs.put("dolo", 30);
+        knownDrugs.put("vicks", 80);
     }
 
     public int query(String drugname)
@@ -23,8 +24,11 @@ public class Database implements IDatabase {
 
     public int claim(String drugname, int quantity)
     {
-        System.out.println(query(drugname) - quantity);
-        return query(drugname) - quantity;
+        int balanceInStock = query(drugname) - quantity;
+        if(balanceInStock >= 0) {
+            knownDrugs.put(drugname, balanceInStock);
+        }
+        return balanceInStock;
     }
 
     public boolean isDrugExist(String drugname) {

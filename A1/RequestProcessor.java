@@ -20,7 +20,7 @@ public class RequestProcessor implements IRequestProcessor
 		try
 		{
 			Request request  = parseJSONString(json);
-			IResponse responseObj = null;
+			Response responseObj = null;
 			if(request != null)
 			{
 			JSONObject outputJSONObj = new JSONObject();
@@ -39,7 +39,8 @@ public class RequestProcessor implements IRequestProcessor
 							{
 								if(database.claim(request.drug, request.quantity) >= 0)
 								{
-									shipMate.shipToAddress(request.address, database.query(request.drug), request.drug);
+									String estDeliveryDate = shipMate.shipToAddress(request.address, database.query(request.drug), request.drug);
+									responseObj = new ShipSuccessResponse(200, estDeliveryDate);
 								}
 								else {
 									responseObj = new ErrorResponse(500, "Insufficient Stock");
@@ -175,8 +176,10 @@ public class RequestProcessor implements IRequestProcessor
 		requestProcessor.EmptyCountryShipRequestProcessTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.NULLPostalCodeShipRequestProcessTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.EmptyPostalCodeShipRequestProcessTest(requestProcessor, authentication, shipMate, database);
-		// requestProcessor.UnknownAddressShipRequestProcessTest(requestProcessor, authentication, shipMate, database); //recheck
-		// requestProcessor.KnownAddrShipReqInsufficientStockTest(requestProcessor, authentication, shipMate, database); //recheck
+		requestProcessor.UnknownAddressShipRequestProcessTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.KnownAddrShipReqInsufficientStockTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.ConsecutiveShipReqOfSameDrugInsuffStockTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.ValidShipRequestProcessTest(requestProcessor, authentication, shipMate, database);
 	}
 
 	private void RequestWithEmptyapikeyAuthenticationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {

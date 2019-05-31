@@ -547,12 +547,39 @@ public class RequestProcessor implements IRequestProcessor
 		String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"abishIP\",\"action\":\"Ship\",\"drug\":\"amoxicillin\",\"quantity\":250, \"address\":{\"customer\":\"abi\",\"street\":\"Gerrish Street\",\"city\":\"Halifax\",\"province\":\"Nova Scotia\",\"country\":\"Canada\",\"postalCode\":\"B3K5K3\"}}";
 		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
 		String expectedOutput = "{\"error\":\"Insufficient Stock\",\"status\":500}";
-		System.out.println(inputJSON + "\n" + actualOutput + "\n" + expectedOutput);
+		
         if(actualOutput.equals(expectedOutput)) {
             System.out.println("PASS - KnownAddrShipReqInsufficientStockTest");
         }
         else {
             System.out.println("FAIL - KnownAddrShipReqInsufficientStockTest");
+        }
+	}
+
+	void ConsecutiveShipReqOfSameDrugInsuffStockTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+		String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"abishIP\",\"action\":\"Ship\",\"drug\":\"vicks\",\"quantity\":50, \"address\":{\"customer\":\"abi\",\"street\":\"Gerrish Street\",\"city\":\"Halifax\",\"province\":\"Nova Scotia\",\"country\":\"Canada\",\"postalCode\":\"B3K5K3\"}}";
+		requestProcessor.processRequest(inputJSON, authentication, shipMate, database); // make the drug count to reduce for testing insufficient
+		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
+		String expectedOutput = "{\"error\":\"Insufficient Stock\",\"status\":500}";
+		
+        if(actualOutput.equals(expectedOutput)) {
+            System.out.println("PASS - ConsecutiveShipReqOfSameDrugInsuffStockTest");
+        }
+        else {
+            System.out.println("FAIL - ConsecutiveShipReqOfSameDrugInsuffStockTest");
+        }
+	}
+
+	void ValidShipRequestProcessTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+		String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"abishIP\",\"action\":\"Ship\",\"drug\":\"amoxicillin\",\"quantity\":10, \"address\":{\"customer\":\"abi\",\"street\":\"Gerrish Street\",\"city\":\"Halifax\",\"province\":\"Nova Scotia\",\"country\":\"Canada\",\"postalCode\":\"B3K5K3\"}}";
+		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
+		String expectedOutput = "{\"estimateddeliverydate\":\"06-10-2019\",\"status\":200}";
+		
+        if(actualOutput.equals(expectedOutput)) {
+            System.out.println("PASS - ValidShipRequestProcessTest");
+        }
+        else {
+            System.out.println("FAIL - ValidShipRequestProcessTest");
         }
 	}
 }

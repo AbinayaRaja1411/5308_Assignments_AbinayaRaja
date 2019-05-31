@@ -152,10 +152,10 @@ public class RequestProcessor implements IRequestProcessor
 		requestProcessor.RequestWithEmptyapikeyAuthenticationTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.RequestWithNULLapikeyAuthenticationTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.RequestWithFALSEapikeyAuthenticationTest(requestProcessor, authentication, shipMate, database);
-		requestProcessor.AuthenticatedRequestNULLUsernameAuthorizationTest(requestProcessor, authentication, shipMate, database);
-		requestProcessor.AuthenticatedRequestEmptyUsernameAuthorizationTest(requestProcessor, authentication, shipMate, database);
-		requestProcessor.AuthenticatedRequestNULLActionAuthorizationTest(requestProcessor, authentication, shipMate, database);
-		requestProcessor.AuthenticatedRequestInvalidActionAuthorizationTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.NULLUsernameAuthorizationTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.EmptyUsernameAuthorizationTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.NULLActionAuthorizationTest(requestProcessor, authentication, shipMate, database);
+		requestProcessor.InvalidActionAuthorizationTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.UnAuthorizedShipRequestAuthorizationTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.UnAuthorizedQueryRequestAuthorizationTest(requestProcessor, authentication, shipMate, database);
 		requestProcessor.AuthorizedQueryReqNULLDrugValidationTest(requestProcessor, authentication, shipMate, database);
@@ -221,55 +221,55 @@ public class RequestProcessor implements IRequestProcessor
         }
     }
 
-    void AuthenticatedRequestNULLUsernameAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+    void NULLUsernameAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
         String inputJSON = "{\"apikey\":\"qwertyTruE\",\"action\":\"QUERY\"}";
 		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
 		String expectedOutput = "{\"error\":\"Not Authorized\",\"status\":500}";
 
         if(actualOutput.equals(expectedOutput)) {
-            System.out.println("PASS - AuthenticatedRequestNULLUsernameAuthorizationTest");
+            System.out.println("PASS - NULLUsernameAuthorizationTest");
         }
         else {
-            System.out.println("FAIL - AuthenticatedRequestNULLUsernameAuthorizationTest");
+            System.out.println("FAIL - NULLUsernameAuthorizationTest");
         }
 	}
 	
-	void AuthenticatedRequestEmptyUsernameAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+	void EmptyUsernameAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
         String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"\",\"action\":\"QUERY\"}";
 		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
 		String expectedOutput = "{\"error\":\"Not Authorized\",\"status\":500}";
 
         if(actualOutput.equals(expectedOutput)) {
-            System.out.println("PASS - AuthenticatedRequestEmptyUsernameAuthorizationTest");
+            System.out.println("PASS - EmptyUsernameAuthorizationTest");
         }
         else {
-            System.out.println("FAIL - AuthenticatedRequestEmptyUsernameAuthorizationTest");
+            System.out.println("FAIL - EmptyUsernameAuthorizationTest");
         }
 	}
 	
-	void AuthenticatedRequestNULLActionAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+	void NULLActionAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
         String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"abi\",}";
 		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
 		String expectedOutput = "{\"error\":\"Not Authorized\",\"status\":500}";
 
         if(actualOutput.equals(expectedOutput)) {
-            System.out.println("PASS - AuthenticatedRequestNULLActionAuthorizationTest");
+            System.out.println("PASS - NULLActionAuthorizationTest");
         }
         else {
-            System.out.println("FAIL - AuthenticatedRequestNULLActionAuthorizationTest");
+            System.out.println("FAIL - NULLActionAuthorizationTest");
         }
 	}
 	
-	void AuthenticatedRequestInvalidActionAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
+	void InvalidActionAuthorizationTest(RequestProcessor requestProcessor, IAuthentication authentication, IShipMate shipMate, IDatabase database) {
         String inputJSON = "{\"apikey\":\"qwertyTruE\",\"username\":\"abi\",\"action\":\"QUERYY\"}";
 		String actualOutput = requestProcessor.processRequest(inputJSON, authentication, shipMate, database);
 		String expectedOutput = "{\"error\":\"Not Authorized\",\"status\":500}";
 
         if(actualOutput.equals(expectedOutput)) {
-            System.out.println("PASS - AuthenticatedRequestInvalidActionAuthorizationTest");
+            System.out.println("PASS - InvalidActionAuthorizationTest");
         }
         else {
-            System.out.println("FAIL - AuthenticatedRequestInvalidActionAuthorizationTest");
+            System.out.println("FAIL - InvalidActionAuthorizationTest");
         }
 	}
 	

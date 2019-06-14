@@ -1,4 +1,4 @@
-public class Canada
+public class Canada implements ICountry
 {
 	public String getAgriculture()
 	{
@@ -8,5 +8,11 @@ public class Canada
 	public String getManufacturing()
 	{
 		return "$100000 CAD";
+	}
+
+	public void displayGDPReport() {
+		System.out.println("- Canada:\n");
+		System.out.println("   - Agriculture: " + getAgriculture());
+		System.out.println("   - Manufacturing: " + getManufacturing());
 	}
 }

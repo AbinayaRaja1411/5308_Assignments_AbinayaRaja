@@ -1,4 +1,4 @@
-public class Account
+public abstract class Account
 {
 	protected float balance;
 
@@ -7,13 +7,7 @@ public class Account
 		return balance;
 	}
 
-	public void credit(float amount)
-	{
-		balance += amount;
-	}
+	public abstract void credit(float amount);
 
-	public void debit(float amount)
-	{
-		balance -= amount;
-	}
+	public abstract void debit(float amount);
 }

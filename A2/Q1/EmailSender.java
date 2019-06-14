@@ -1,4 +1,4 @@
-public class EmailSender
+public class EmailSender implements IEmailSender
 {
 	public void sendEmail(String emailAddress, String subject, String message)
 	{

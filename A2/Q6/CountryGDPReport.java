@@ -4,11 +4,9 @@ public class CountryGDPReport
 {
 	ArrayList<ICountry> countries;
 
-	public CountryGDPReport(ICountry canada, ICountry mexico)
+	public CountryGDPReport(ArrayList<ICountry> countries)
 	{
-		countries = new ArrayList<>();
-		countries.add(canada);
-		countries.add(mexico);
+		this.countries = countries;
 	}
 
 	public void printCountryGDPReport()

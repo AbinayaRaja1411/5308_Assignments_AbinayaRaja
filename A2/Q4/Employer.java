@@ -4,17 +4,9 @@ public class Employer
 {
 	ArrayList<IWorker> workers;
 
-	public Employer(IWorker hourlyWorker, IWorker salaryWorker)
+	public Employer(ArrayList<IWorker> workers)
 	{
-		workers = new ArrayList<IWorker>();
-		for (int i = 0; i < 5; i++)
-		{
-			workers.add(hourlyWorker);
-		}
-		for (int i = 0; i < 5; i++)
-		{
-			workers.add(salaryWorker);
-		}
+		this.workers = workers;
 	}
 
 	public void outputWageCostsForAllStaff(int hours)

@@ -1,4 +1,4 @@
-public class HourlyWorker
+public class HourlyWorker implements IWorker
 {
 	private float hourlyRate;
 

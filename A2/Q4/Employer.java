@@ -2,34 +2,27 @@ import java.util.ArrayList;
 
 public class Employer
 {
-	ArrayList<HourlyWorker> hourlyWorkers;
-	ArrayList<SalaryWorker> salaryWorkers;
+	ArrayList<IWorker> workers;
 
-	public Employer()
+	public Employer(IWorker hourlyWorker, IWorker salaryWorker)
 	{
-		hourlyWorkers = new ArrayList<HourlyWorker>();
+		workers = new ArrayList<IWorker>();
 		for (int i = 0; i < 5; i++)
 		{
-			hourlyWorkers.add(new HourlyWorker());
+			workers.add(hourlyWorker);
 		}
-		salaryWorkers = new ArrayList<SalaryWorker>();
 		for (int i = 0; i < 5; i++)
 		{
-			salaryWorkers.add(new SalaryWorker());
+			workers.add(salaryWorker);
 		}
 	}
 
 	public void outputWageCostsForAllStaff(int hours)
 	{
 		float cost = 0.0f;
-		for (int i = 0; i < hourlyWorkers.size(); i++)
+		for (int i = 0; i < workers.size(); i++)
 		{
-			HourlyWorker worker = hourlyWorkers.get(i);
-			cost += worker.calculatePay(hours);
-		}
-		for (int i = 0; i < salaryWorkers.size(); i++)
-		{
-			SalaryWorker worker = salaryWorkers.get(i);
+			IWorker worker = workers.get(i);
 			cost += worker.calculatePay(hours);
 		}
 		System.out.println("Total wage cost for all staff = $" + cost);

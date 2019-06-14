@@ -1,4 +1,4 @@
-public class SalaryWorker
+public class SalaryWorker implements IWorker
 {
 	private float salary;
 	private int hoursPerWeek;

@@ -40,5 +40,10 @@ public class Asteroid extends BoardComponent
 	public void Remove(BoardComponent child)
 	{
 		// I'm a leaf!
-	}	
+	}
+	
+	@Override
+	public void updateObserver() {
+		// No impact
+	}
 }

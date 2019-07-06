@@ -23,9 +23,16 @@ public class Shield extends SquareDecorator {
 
 	@Override
 	public void updateObserver(BoardComponent target) {
-		shieldHealth -= 1;
-		if(shieldHealth == 0) {
-			square.updateObserver(target);
+		if(target.equals(square))
+		{
+			if(shieldHealth > 0) 
+			{
+				shieldHealth -= 1;
+			}
+			else
+			{
+				square.updateObserver(target);
+			}
 		}
 	}
 }

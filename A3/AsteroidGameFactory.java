@@ -7,7 +7,9 @@ public class AsteroidGameFactory implements IAsteroidGameFactory
 	@Override
 	public BoardComponent MakeSquare()
 	{
-		return new Square();
+		Square sqr = new Square();
+		Subject.getAsteroidSubject().Attach(sqr);
+		return sqr;
 	}
 
 	@Override

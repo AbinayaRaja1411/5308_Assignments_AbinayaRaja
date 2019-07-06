@@ -36,4 +36,14 @@ public class Square extends BoardComponent
 	{
 		children.remove(child);
 	}
+
+	@Override
+	public void updateObserver() {
+		for (BoardComponent building : children) 
+		{
+			building.updateObserver();
+		}
+	}
+
+	
 }

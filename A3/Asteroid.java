@@ -22,6 +22,7 @@ public class Asteroid extends BoardComponent
 			// observer to tell it that it impacted the ground in the square it belongs
 			// to.
 			// <-- Send event to observer.
+			Subject.getAsteroidSubject().Notify(parent);
 			
 			// It should then remove itself from its parent, it no longer exists in the
 			// hierarchy and should not receive any more operations.

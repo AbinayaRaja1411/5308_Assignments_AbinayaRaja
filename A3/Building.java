@@ -27,4 +27,14 @@ public class Building extends BoardComponent
 	{
 		// Do nothing, I'm a leaf.
 	}
+
+	@Override
+	public void updateObserver() {
+		buildingHealth -= 1;
+		if(buildingHealth == 0) {
+			parent.Remove(this);
+			GameBoard.Instance().DecrementBuildingCount();
+		}
+	}
+
 }

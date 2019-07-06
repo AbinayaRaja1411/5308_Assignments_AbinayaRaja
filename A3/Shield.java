@@ -22,10 +22,10 @@ public class Shield extends SquareDecorator {
 	}
 
 	@Override
-	public void updateObserver() {
+	public void updateObserver(BoardComponent target) {
 		shieldHealth -= 1;
 		if(shieldHealth == 0) {
-			square.updateObserver();
+			square.updateObserver(target);
 		}
 	}
 }

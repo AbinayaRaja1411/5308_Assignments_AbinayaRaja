@@ -29,7 +29,7 @@ public class Building extends BoardComponent
 	}
 
 	@Override
-	public void updateObserver() {
+	public void updateObserver(BoardComponent target) {
 		buildingHealth -= 1;
 		if(buildingHealth == 0) {
 			parent.Remove(this);

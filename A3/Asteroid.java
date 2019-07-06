@@ -43,7 +43,8 @@ public class Asteroid extends BoardComponent
 	}
 	
 	@Override
-	public void updateObserver() {
+	public void updateObserver(BoardComponent target) 
+	{
 		// No impact
 	}
 }

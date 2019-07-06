@@ -38,10 +38,15 @@ public class Square extends BoardComponent
 	}
 
 	@Override
-	public void updateObserver() {
-		for (BoardComponent building : children) 
+	public void updateObserver(BoardComponent target) 
+	{
+		if(this.equals(target))
 		{
-			building.updateObserver();
+			for (int i = 0; i < children.size(); i++) 
+			{
+				BoardComponent child = children.get(i);
+				child.updateObserver(target);
+			}
 		}
 	}
 

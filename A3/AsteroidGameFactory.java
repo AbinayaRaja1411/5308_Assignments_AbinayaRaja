@@ -83,17 +83,17 @@ public class AsteroidGameFactory implements IAsteroidGameFactory
 			}
 			case "SPAWN_BUILDING":
 			{
-				// TODO:  Implement a command to spawn a building.  It should be similar
-				//        to SPAWN_ASTEROID above.  The command must increment the building count!
+				int x = Integer.parseInt(args[0]);
+				int y = Integer.parseInt(args[1]);
+				BoardComponent square = GameBoard.Instance().GetBoard().get(y).get(x);
+				return new SpawnBuildingCommand(square, args);
 			}
 			case "SPAWN_SHIELD":
 			{
-				// TODO:  Implement a command that uses the Decorator pattern to decorate
-				//        a Square object with a shield.  The shield will have health,
-				//        like a building, hard coded to 2 health in the decorator object.
-				//			 While the shield is alive buildings in the square do not take damage from
-				//			 asteroid impacts.  When the shield health hits 0 it is destroyed and
-				//			 removed from decorating the Square.
+				int x = Integer.parseInt(args[0]);
+				int y = Integer.parseInt(args[1]);
+				BoardComponent square = GameBoard.Instance().GetBoard().get(y).get(x);
+				return new SpawnShieldCommand(square, args);
 			}
 		}
 		return null;

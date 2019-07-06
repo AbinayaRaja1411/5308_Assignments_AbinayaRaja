@@ -1,8 +1,14 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Subject implements ISubject {
     ArrayList<BoardComponent> observers;
-	private static ISubject asteroidSubject =null;
+    private static ISubject asteroidSubject =null;
+
+    private Subject()
+    {
+        observers = new ArrayList<>();
+    }
     @Override
     public void Attach(BoardComponent observer) {
         observers.add(observer);
@@ -14,12 +20,13 @@ public class Subject implements ISubject {
     }
 
     @Override
-    public void Notify(BoardComponent square) {
-        for (BoardComponent observer : observers) {
-            if(observer.equals(square))
-            {
-                observer.updateObserver();
-            }
+    public void Notify(BoardComponent square) 
+    {
+        Iterator<BoardComponent> observersItr = observers.iterator();
+        while (observersItr.hasNext()) 
+        {
+            BoardComponent observer = observersItr.next();
+            observer.updateObserver(square);
         }
     }
     

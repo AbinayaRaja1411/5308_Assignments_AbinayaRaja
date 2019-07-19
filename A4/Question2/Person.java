@@ -35,6 +35,7 @@ public class Person
 	{
 		this.personLoginInfo.setLoginCredentials(userName, password);
 	}
+
 	public boolean authenticateUser()
 	{
 		return this.personLoginInfo.authenticateUser();

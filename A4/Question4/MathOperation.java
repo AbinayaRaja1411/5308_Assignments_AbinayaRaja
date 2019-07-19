@@ -1,18 +1,13 @@
-public class MathOperation
+public abstract class MathOperation
 {
-	private int leftOperand;
-	private int rightOperand;
-	private IArithmeticOperation operationType;
+	protected int leftOperand;
+	protected int rightOperand;
 
-	public MathOperation(IArithmeticOperation operationType, int leftOperand, int rightOperand)
+	public MathOperation(int leftOperand, int rightOperand)
 	{
 		this.leftOperand = leftOperand;
 		this.rightOperand = rightOperand;
-		this.operationType = operationType;
 	}
 
-	public int getResult()
-	{
-		return operationType.calculate(leftOperand, rightOperand);
-	}
+	public abstract int getResult();
 }

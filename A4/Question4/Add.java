@@ -1,7 +1,12 @@
-public class Add implements IArithmeticOperation {
+public class Add extends MathOperation 
+{
+    public Add(int leftOperand, int rightOperand) 
+    {
+        super(leftOperand, rightOperand);
+    }
 
     @Override
-    public int calculate(int leftOperand, int rightOperand) 
+    public int getResult() 
     {
         return leftOperand + rightOperand;
     }

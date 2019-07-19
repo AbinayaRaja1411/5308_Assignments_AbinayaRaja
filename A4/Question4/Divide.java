@@ -1,7 +1,12 @@
-public class Divide implements IArithmeticOperation
+public class Divide extends MathOperation
 {
+    public Divide(int leftOperand, int rightOperand) 
+    {
+        super(leftOperand, rightOperand);
+    }
+
     @Override
-    public int calculate(int leftOperand, int rightOperand) 
+    public int getResult() 
     {
         return leftOperand / rightOperand;
     }

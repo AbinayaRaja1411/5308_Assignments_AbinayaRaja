@@ -1,6 +1,7 @@
 public class Person
 {
 	public String name;
+	public Address address = new Address("Rob street", "Rob city", "Rob province", "Rob postalcode");
 
 	public Person()
 	{
@@ -9,11 +10,10 @@ public class Person
 
 	public boolean isPersonRob()
 	{
-		Address address = new Address("Rob street", "Rob city", "Rob province", "Rob postalcode");
-		return name.equals("Rob") && isRobsAddress(address);
+		return name.equals("Rob") && isRobsAddress();
 	}
 
-	private boolean isRobsAddress(Address address)
+	private boolean isRobsAddress()
 	{
 		return address.getStreet().equals("Rob street") &&
 			address.getCity().equals("Rob city") &&
